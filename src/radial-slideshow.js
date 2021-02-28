@@ -84,16 +84,20 @@ class RadialSlideShow {
 
     /**
      * @param {{}} item 
+     * @param {number} deg
      * @returns {HTMLDivElement}
      */
     createItemElement(item, deg) {
-        let div = document.createElement("div");
-        div.classList.add("slide-item");
-        div.setAttribute("deg", deg);
+        let elem = document.createElement("a");
+        if (item.link) {
+            elem.setAttribute("href", item.link);
+        }
+        elem.classList.add("slide-item");
+        elem.setAttribute("deg", deg);
         let img = document.createElement("img");
         img.src = item.image;
-        div.appendChild(img);
-        return div;
+        elem.appendChild(img);
+        return elem;
     }
 
     requestNextItem() {
